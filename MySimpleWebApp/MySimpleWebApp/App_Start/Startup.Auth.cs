@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
@@ -22,7 +24,13 @@ namespace MySimpleWebApp
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Configure the db context and user manager to use a single instance per request
+           
+            log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(@"D:\MyPetGitRepo\MySimpleWebApp\MySimpleWebApp.exe.log4net"));
+
+            Log.For(this).Info("Log started");
+
+         
+        // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
 

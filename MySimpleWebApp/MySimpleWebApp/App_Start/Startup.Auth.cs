@@ -43,6 +43,8 @@ namespace MySimpleWebApp
 
             container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
             
+            container.Verify();
+
             #endregion
 
             // Configure the db context and user manager to use a single instance per request

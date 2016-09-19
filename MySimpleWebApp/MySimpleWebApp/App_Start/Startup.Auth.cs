@@ -36,17 +36,6 @@ namespace MySimpleWebApp
 
             #endregion
 
-            #region IoC
-            
-            var container = new Container();
-            container.Options.DefaultScopedLifestyle = new WebApiRequestLifestyle();
-
-            container.RegisterWebApiControllers(GlobalConfiguration.Configuration);
-            
-            container.Verify();
-
-            #endregion
-
             // Configure the db context and user manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);

@@ -9,7 +9,7 @@ namespace MySimpleWebApp
         static Log()
         {
             XmlConfigurator.Configure();
-        }
+        } 
 
         public static ILog For(object LoggedObject)
         {

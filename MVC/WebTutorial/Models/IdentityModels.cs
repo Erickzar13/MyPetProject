@@ -33,5 +33,7 @@ namespace WebTutorial.Models
         public System.Data.Entity.DbSet<WebTutorial.Models.Movie> Movies { get; set; }
 
         public System.Data.Entity.DbSet<WebTutorial.Models.ComplicatedModel> ComplicatedModels { get; set; }
+
+        public System.Data.Entity.DbSet<WebTutorial.Models.LocationModel> LocationModels { get; set; }
     }
 }

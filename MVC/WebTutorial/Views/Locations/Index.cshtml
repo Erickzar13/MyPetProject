@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebTutorial.Models.LocationModel>
+﻿@model IEnumerable<WebTutorial.Models.Location>
 
 @{
     ViewBag.Title = "Index";
@@ -13,13 +13,11 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-
         <th>
             @Html.DisplayNameFor(model => model.City)
         </th>
@@ -29,10 +27,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Country.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Country)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.City)

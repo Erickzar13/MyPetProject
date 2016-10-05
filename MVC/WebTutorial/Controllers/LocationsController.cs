@@ -10,107 +10,112 @@ using WebTutorial.Models;
 
 namespace WebTutorial.Controllers
 {
-    public class LocationController : Controller
+    public class LocationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Location
+        // GET: Locations
         public ActionResult Index()
         {
-            return View(db.LocationModels.ToList());
+            var locationModels = db.LocationModels.Include(l => l.Country);
+            return View(locationModels.ToList());
         }
 
-        // GET: Location/Details/5
+        // GET: Locations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LocationModel locationModel = db.LocationModels.Find(id);
-            if (locationModel == null)
+            Location location = db.LocationModels.Find(id);
+            if (location == null)
             {
                 return HttpNotFound();
             }
-            return View(locationModel);
+            return View(location);
         }
 
-        // GET: Location/Create
+        // GET: Locations/Create
         public ActionResult Create()
         {
+            ViewBag.Country_Id = new SelectList(db.Countries, "Id", "Name");
             return View();
         }
 
-        // POST: Location/Create
+        // POST: Locations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,City,Country")] LocationModel locationModel)
+        public ActionResult Create([Bind(Include = "Id,Name,City,Country_Id")] Location location)
         {
             if (ModelState.IsValid)
             {
-                db.LocationModels.Add(locationModel);
+                db.LocationModels.Add(location);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(locationModel);
+            ViewBag.Country_Id = new SelectList(db.Countries, "Id", "Name", location.Country_Id);
+            return View(location);
         }
 
-        // GET: Location/Edit/5
+        // GET: Locations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LocationModel locationModel = db.LocationModels.Find(id);
-            if (locationModel == null)
+            Location location = db.LocationModels.Find(id);
+            if (location == null)
             {
                 return HttpNotFound();
             }
-            return View(locationModel);
+            ViewBag.Country_Id = new SelectList(db.Countries, "Id", "Name", location.Country_Id);
+            return View(location);
         }
 
-        // POST: Location/Edit/5
+        // POST: Locations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,City,Country")] LocationModel locationModel)
+        public ActionResult Edit([Bind(Include = "Id,Name,City,Country_Id")] Location location)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(locationModel).State = EntityState.Modified;
+                db.Entry(location).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(locationModel);
+            ViewBag.Country_Id = new SelectList(db.Countries, "Id", "Name", location.Country_Id);
+            return View(location);
         }
 
-        // GET: Location/Delete/5
+        // GET: Locations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LocationModel locationModel = db.LocationModels.Find(id);
-            if (locationModel == null)
+            Location location = db.LocationModels.Find(id);
+            if (location == null)
             {
                 return HttpNotFound();
             }
-            return View(locationModel);
+            return View(location);
         }
 
-        // POST: Location/Delete/5
+        // POST: Locations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LocationModel locationModel = db.LocationModels.Find(id);
-            db.LocationModels.Remove(locationModel);
+            Location location = db.LocationModels.Find(id);
+            db.LocationModels.Remove(location);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

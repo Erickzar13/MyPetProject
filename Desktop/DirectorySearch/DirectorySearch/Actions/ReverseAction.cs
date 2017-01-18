@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 using DirectorySearch.Actions.Revers;
 using DirectorySearch.Interfaces;
@@ -20,9 +22,24 @@ namespace DirectorySearch.Actions
 
         public override string Search(DirectoryInfo directory, FileInfo file)
         {
-            string result = file.FullName
-                                .Replace(directory.FullName, string.Empty)
-                                .TrimStart(Path.DirectorySeparatorChar);
+            List<string> resultList;
+            string tmpResult;
+
+            Directory.GetFiles(directory.FullName, SearchStrategy);
+
+            resultList = Directory.GetFiles(directory.FullName, SearchStrategy).ToList();
+
+           
+
+            for (int i = 0; i < resultList.Count; i++)
+            {
+                tmpResult = resultList[i];
+
+                strategy.PerformReversse(ref tmpResult);
+
+                resultList[i] = tmpResult;
+            }
+
 
             strategy.PerformReversse(ref result);
 

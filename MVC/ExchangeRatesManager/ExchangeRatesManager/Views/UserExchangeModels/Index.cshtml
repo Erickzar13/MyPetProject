@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ExchangeRatesManager.Models.UserExchangeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UsdSaleRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsdBuyingRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EurSaleRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EurBuyingRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RubSaleRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RubBuyingRate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsdSaleRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsdBuyingRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EurSaleRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EurBuyingRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RubSaleRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RubBuyingRate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ExchangeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ExchangeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ExchangeId })
+        </td>
+    </tr>
+}
+
+</table>

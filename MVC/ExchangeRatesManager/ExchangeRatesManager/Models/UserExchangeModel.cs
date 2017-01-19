@@ -7,19 +7,16 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ExchangeRatesManager.Models
 {
-    [Bind(Exclude = "UserId")]
+    [Bind(Exclude = "ExchangeId")]
     public class UserExchangeModel
     {
         [ScaffoldColumn(false)]
         [Key]
         public int ExchangeId { get; set; }
 
-        public string OwnerId { get; set; }
-
         [ScaffoldColumn(false)]
-        [ForeignKey("OwnerId")]
-        public ApplicationUser Owner { get; set; }
-
+        public string OwnerId { get; set; }             
+        
         [DisplayName("Usd Sale Rate")]
         [Required(ErrorMessage = "An Album Title is required")]
         [Range(0.01, 1000.00, ErrorMessage = "Price must be between 0.01 and 1000.00")]

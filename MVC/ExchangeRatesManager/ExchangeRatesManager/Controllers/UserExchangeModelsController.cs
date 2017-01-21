@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ExchangeRatesManager.Models;
 
@@ -17,6 +12,7 @@ namespace ExchangeRatesManager.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: UserExchangeModels/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             var userExchangeModel = new UserExchangeModel();
@@ -33,6 +29,7 @@ namespace ExchangeRatesManager.Controllers
         // POST: UserExchangeModels/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit(UserExchangeModel userExchangeModel)
         {
             var curentUser = User.Identity.GetUserId();

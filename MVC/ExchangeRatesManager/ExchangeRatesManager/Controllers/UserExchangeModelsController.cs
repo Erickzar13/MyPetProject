@@ -33,7 +33,7 @@ namespace ExchangeRatesManager.Controllers
         public ActionResult Edit(UserExchangeModel userExchangeModel)
         {
             var curentUser = User.Identity.GetUserId();
-
+           
             if (ModelState.IsValid)
             {
                 var exengeModel = db.UserExchangeModels.FirstOrDefault(t => t.OwnerId == curentUser);

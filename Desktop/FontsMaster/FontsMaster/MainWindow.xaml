@@ -77,6 +77,13 @@
                 VerticalAlignment="Bottom" 
                 Command="{Binding PrintCommand}" 
                 CommandParameter="{Binding ElementName=_canvasToPrint}"/>
+                
+                <Button  x:Name="_btnSave"
+                    Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding SelectedFontFamilies}" 
+                    Content="Save" HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom"
+                    Style="{StaticResource ButtonsStyle}"/>
 
             </StackPanel>
 
@@ -106,7 +113,8 @@
                      TextWrapping="Wrap" 
                      Text="{Binding FontSize}"/>
 
-            <InkCanvas Name="_canvasToPrint" EditingMode="Select"  Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
+            <InkCanvas Name="_canvasToPrint" EditingMode="Select" 
+                       Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0">
             
             <TextBox 
                      x:Name="_txtApplyFonts"

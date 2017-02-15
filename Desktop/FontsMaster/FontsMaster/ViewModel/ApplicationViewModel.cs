@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Media;
+
+using FontsMaster.Models;
 
 namespace FontsMaster.ViewModel
 {
-   public class ApplicationViewModel
+    public class ApplicationViewModel
     {
         public FontFamily SelectedFontFamily { get; set; }
 
@@ -25,12 +21,11 @@ namespace FontsMaster.ViewModel
         public bool IsInverted { get; set; }
 
         public ApplicationViewModel()
-       {
-           AllFontFamilies = Fonts.SystemFontFamilies.ToList();
+        {
+            AllFontFamilies = Fonts.SystemFontFamilies.ToList();
 
-            SelectedFontFamilies = new BindingList<FontFamily>();
+            SelectedFontFamilies = new BindingList<FontFamily>(FontWrapper.FromXML());
         }
-
 
         private RelayCommand printCommand;
 
@@ -47,28 +42,28 @@ namespace FontsMaster.ViewModel
                                                             {
                                                                 printDialog.PrintVisual(run, "Print");
                                                             }
-                                                        },obj => obj is InkCanvas));
+                                                        },
+                                                        obj => obj is InkCanvas));
             }
         }
-
 
         private RelayCommand moveToSelectedRelayCommand;
 
         public RelayCommand MoveToSelectedRelayCommand
-       {
-           get
-           {
-               return moveToSelectedRelayCommand ??
-                      (moveToSelectedRelayCommand = new RelayCommand(obj =>
-                                                                     {
-                                                                         SelectedFontFamilies.Add(
-                                                                                                  obj as
-                                                                                                      FontFamily);
-                                                                     },
-                                                                     obj => !SelectedFontFamilies.Contains(obj as
-                                                                                                      FontFamily)));
-           }
-       }
+        {
+            get
+            {
+                return moveToSelectedRelayCommand ??
+                       (moveToSelectedRelayCommand = new RelayCommand(obj =>
+                                                                      {
+                                                                          SelectedFontFamilies.Add(
+                                                                                                   obj as
+                                                                                                       FontFamily);
+                                                                      },
+                                                                      obj => !SelectedFontFamilies.Contains(obj as
+                                                                                                                FontFamily)));
+            }
+        }
 
         private RelayCommand removeFromSelectedCommand;
 
@@ -78,8 +73,28 @@ namespace FontsMaster.ViewModel
             {
                 return removeFromSelectedCommand ?? (removeFromSelectedCommand = new RelayCommand(obj =>
                                                                                                   {
-                                                                                                      SelectedFontFamilies.Remove(obj as FontFamily);
-                                                                                                  },obj => SelectedFontFamilies.Contains((FontFamily)obj)));
+                                                                                                      SelectedFontFamilies.Remove(
+                                                                                                                                  obj as
+                                                                                                                                      FontFamily);
+                                                                                                  },
+                                                                                                  obj =>
+                                                                                                      SelectedFontFamilies.Contains(
+                                                                                                                                    (
+                                                                                                                                    FontFamily
+                                                                                                                                    )obj)));
+            }
+        }
+
+        private RelayCommand saveCommand;
+
+        public RelayCommand SaveCommand
+        {
+            get
+            {
+                return saveCommand ?? (saveCommand = new RelayCommand(obj =>
+                                                                      {
+                                                                          FontWrapper.ToXML((IEnumerable<FontFamily>)obj);
+                                                                      }));
             }
         }
     }

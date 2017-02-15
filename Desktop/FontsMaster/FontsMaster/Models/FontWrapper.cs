@@ -1,17 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
-
-using FontsMaster.Annotations;
 
 namespace FontsMaster.Models
 {
-    public class FontWrapper// : INotifyPropertyChanged
+    public class FontWrapper
     {
+        public static List<FontFamily> FromXML()
+        {
+            if (!File.Exists(@"..\Fonts.xml"))
+            {
+                File.Create(@"..\Fonts.xml");
+                
+            }
+
+            var test = File.ReadAllLines(@"..\Fonts.xml").ToList();
+
+            return test.Select(s => new FontFamily(s)).ToList();
+        }
+
+        public static void ToXML(IEnumerable<FontFamily> fontFamilies)
+        {
+            List<string> fontNames = fontFamilies.Select(family => family.ToString()).ToList();
+
+            File.WriteAllLines(@"..\Fonts.xml", fontNames);
+        }
     }
 }

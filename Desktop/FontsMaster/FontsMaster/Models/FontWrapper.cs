@@ -9,12 +9,6 @@ namespace FontsMaster.Models
     {
         public static List<FontFamily> FromXML()
         {
-            if (!File.Exists(@"..\Fonts.xml"))
-            {
-                File.Create(@"..\Fonts.xml");
-                
-            }
-
             var test = File.ReadAllLines(@"..\Fonts.xml").ToList();
 
             return test.Select(s => new FontFamily(s)).ToList();

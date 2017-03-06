@@ -77,13 +77,23 @@
                 VerticalAlignment="Bottom" 
                 Command="{Binding PrintCommand}" 
                 CommandParameter="{Binding ElementName=_canvasToPrint}"/>
-                
+
                 <Button  x:Name="_btnSave"
                     Command="{Binding SaveCommand}"
                     CommandParameter="{Binding SelectedFontFamilies}" 
                     Content="Save" HorizontalAlignment="Center" 
                     VerticalAlignment="Bottom"
                     Style="{StaticResource ButtonsStyle}"/>
+
+                <Button  x:Name="_btnOpenFolder" Style="{StaticResource ButtonsStyle}"
+                Content="Open" HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" 
+                Command="{Binding OpenRelayCommand}"/>
+
+                <Button  x:Name="_btnClear" Style="{StaticResource ButtonsStyle}"
+                Content="Clear" HorizontalAlignment="Right"
+                VerticalAlignment="Bottom" 
+                Command="{Binding ClearCommand}"/>
 
             </StackPanel>
 
@@ -110,7 +120,7 @@
                      x:Name="_txbFontSize" 
                      HorizontalAlignment="Stretch"
                      VerticalAlignment="Stretch"
-                     TextWrapping="Wrap" 
+                     TextWrapping="Wrap"
                      Text="{Binding FontSize}"/>
 
             <InkCanvas Name="_canvasToPrint" EditingMode="Select" 

@@ -221,15 +221,32 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\fonts.css" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\media.css" />
+    <Content Include="Content\css\skins\tomato.css" />
+    <Content Include="Content\img\currency-exchange.jpg" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\Foreign-Currencies-Traders-Only.jpg" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Content\libs\html5shiv\es5-shim.min.js" />
+    <Content Include="Content\libs\html5shiv\html5shiv-printshiv.min.js" />
+    <Content Include="Content\libs\html5shiv\html5shiv.min.js" />
+    <Content Include="Content\libs\html5shiv\respond.min.js" />
+    <Content Include="Content\libs\respond\respond.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\css\main.css.map" />
+    <Content Include="Content\css\sass\fonts.sass" />
+    <Content Include="Content\css\sass\main.sass" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

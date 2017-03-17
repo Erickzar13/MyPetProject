@@ -50,7 +50,7 @@ namespace ExchangeRatesManager.Models
     {
         [Required]
         [Display(Name = "Телефон")]
-        [Phone]
+        [Phone(ErrorMessage = "Номер телефона введен некорректно.")]
         public string PhoneNumber { get; set; }
 
         [Required]
@@ -65,19 +65,28 @@ namespace ExchangeRatesManager.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Имя обменника")]
+        public string CompanyName { get; set; }
+        
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Phone]
+        [Display(Name = "Телефон")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Длина пароля должна быть от {0} до {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Подтверждение")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают.")]
         public string ConfirmPassword { get; set; }
     }
 

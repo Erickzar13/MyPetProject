@@ -28,12 +28,12 @@ namespace ExchangeRatesManager
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Money/css").Include(
+                       "~/Content/bootstrap.css",
                        "~/Content/css/main.css",
                        "~/Content/css/main.css.map",
                        "~/Content/css/media.css",
                        "~/Content/css/media.css",
-                       "~/Content/css/fonts.css",
-                       "~/Content/bootstrap.css"));
+                       "~/Content/css/fonts.css"));
 
 
         }

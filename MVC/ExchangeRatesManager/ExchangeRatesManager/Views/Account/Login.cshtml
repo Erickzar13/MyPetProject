@@ -12,59 +12,60 @@
                 <span class="glyphicon glyphicon-lock"></span> Login
             </div>
             <div class="panel-body">
-              @*  <form class="form-horizontal" role="form">*@
-                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Телефон
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.PhoneNumber, new{@class = "form-control",@placeholder = "067-111-22-33",@type = "tel",@id = "inputEmail3",@required = "required"
+                       })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                            Пароль
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.Password, new{@class = "form-control",@placeholder = "пароль",@type = "password",@id = "inputPassword3",@required = "required"
+                           })
+                        </div>
+                    </div>
+                    if (!ViewData.ModelState.IsValid)
                     {
-                        @Html.AntiForgeryToken()
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">
-                                Телефон
-                            </label>
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(m => m.PhoneNumber, new
-                                {
-                                    @class = "form-control", @placeholder = "067-111-22-33", @type = "tel", @id = "inputEmail3"
-                                })
-                                @*@Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })*@
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">
-                                Пароль
-                            </label>
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(m => m.Password, new
-                                {
-                                    @class = "form-control", @placeholder = "пароль", @type = "password", @id = "inputPassword3", @required = "required"
-                                })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <div class="checkbox">
-                                    <label>
-                                        @Html.CheckBoxFor(m => m.RememberMe)
-                                        @Html.LabelFor(m => m.RememberMe)
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group last">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-success btn-sm">
-                                    Вход
-                                </button>
-
-                                <button type="reset" class="btn btn-default btn-sm">
-                                    Сбросить
-                                </button>
+                        <div class="form-group formValidationErrorSummary">
+                            <div class="col-sm-12">
+                                @Html.ValidationSummary()
                             </div>
                         </div>
                     }
-                @*</form>*@
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Вход
+                            </button>
+
+                            <button type="reset" class="btn btn-default btn-sm">
+                                Сбросить
+                            </button>
+                        </div>
+                    </div>
+                }
             </div>
             <div class="panel-footer">
-  
+
                 Нет бота? @Html.ActionLink("Регистрируйся", "Register")
             </div>
         </div>

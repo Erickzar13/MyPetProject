@@ -51,4 +51,12 @@ body {
   .jumbo p {
     text-align: center; }
 
+  .formValidationErrorSummary {
+      color: green;
+      margin-bottom: 0;
+  }
+
+    .formValidationErrorSummary ul {
+        padding-left: 20px;
+    }
 /*# sourceMappingURL=main.css.map */

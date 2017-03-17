@@ -1,40 +1,106 @@
 ﻿@model ExchangeRatesManager.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Регистрация
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label for="inputCompanyName" class="col-sm-3 control-label">
+                            Имя обменника
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.CompanyName, new
+                            {
+                                @class = "form-control",
+                                @id = "inputCompanyName",
+                                @required = "required"
+                            })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Email
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.Email, new
+                       {
+                           @class = "form-control",
+                           @type = "email",
+                           @id = "inputEmail3",
+                           @required = "required"
+                       })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">
+                            Телефон
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.PhoneNumber, new
+                       {
+                           @class = "form-control",
+                           @placeholder = "067-111-22-33",
+                           @type = "tel",
+                           @required = "required"
+                       })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                            Пароль
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.Password, new
+                       {
+                           @class = "form-control",
+                           @placeholder = "пароль",
+                           @type = "password",
+                           @id = "inputPassword3",
+                           @required = "required"
+                       })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">
+                            Подтверждение
+                        </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new
+                       {
+                           @class = "form-control",
+                           @placeholder = "повторите пароль",
+                           @type = "password",
+                           @id = "inputConfirmPassword",
+                           @required = "required"
+                       })
+                        </div>
+                    </div>
+                    if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="form-group formValidationErrorSummary">
+                            <div class="col-sm-12">
+                                @Html.ValidationSummary()
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Зарегистрироваться
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

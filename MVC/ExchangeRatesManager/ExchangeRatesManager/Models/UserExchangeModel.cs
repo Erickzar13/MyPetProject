@@ -17,32 +17,32 @@ namespace ExchangeRatesManager.Models
         [ScaffoldColumn(false)]
         public string OwnerId { get; set; }             
         
-        [DisplayName("Usd Sale Rate")]
-        [Required(ErrorMessage = "An Album Title is required")]
+        [DisplayName("Usd продажа")]
+        [Required(ErrorMessage = "field is required")]
         [Range(0.01, 1000.00, ErrorMessage = "Price must be between 0.01 and 1000.00")]
         public int UsdSaleRate { get; set; }
 
-        [DisplayName("Usd Buying Rate")]
+        [DisplayName("Usd покупка")]
         [Required(ErrorMessage = "An Album Title is required")]
         [Range(0.01, 1000.00, ErrorMessage = "Price must be between 0.01 and 1000.00")]
         public int UsdBuyingRate { get; set; }
 
-        [DisplayName("Eur Sale Rate")]
+        [DisplayName("Eur продажа")]
         [Required(ErrorMessage = "An Album Title is required")]
         [Range(0.01, 1000.00, ErrorMessage = "Price must be between 0.01 and 1000.00")]
         public int EurSaleRate { get; set; }
 
-        [DisplayName("Eur Buying Rate")]
+        [DisplayName("Eur покупка")]
         [Required(ErrorMessage = "An Album Title is required")]
         [Range(0.01, 1000.00, ErrorMessage = "Price must be between 0.01 and 1000.00")]
         public int EurBuyingRate { get; set; }
 
-        [DisplayName("Rub Sale Rate")]
+        [DisplayName("Rub продажа")]
         [Required(ErrorMessage = "An Album Title is required")]
         [Range(0.01, 1000.00, ErrorMessage = "Price must be between 0.01 and 1000.00")]
         public int RubSaleRate { get; set; }
 
-        [DisplayName("Rub Buying Rate")]
+        [DisplayName("Rub покупка")]
         [Required(ErrorMessage = "An Album Title is required")]
         [Range(0.01, 1000.00, ErrorMessage = "Price must be between 0.01 and 1000.00")]
         public int RubBuyingRate { get; set; }

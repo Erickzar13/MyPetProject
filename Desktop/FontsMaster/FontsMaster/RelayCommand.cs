@@ -20,7 +20,7 @@ namespace FontsMaster
 
         public event EventHandler CanExecuteChanged
         {
-            add { CommandManager.RequerySuggested += value; }
+            add { CommandManager.RequerySuggested += value; }//56756
             remove { CommandManager.RequerySuggested -= value; }
         }
 
